@@ -9,7 +9,7 @@
 
 void delay(uint32_t);
 
-\
+
 int main()
 {
 													 /* Enbale GPIOA clock */
@@ -20,7 +20,14 @@ int main()
 	GPIOA->OSPEEDR |= (3 << (LED_PIN << 1));		/* Configure GPIOA pin 5 in max speed */
  
 													/* Turn on the LED */
-	LED_ON();
+	
+	while(1)
+		{
+			LED_ON();
+			delay(2000);
+			LED_OFF();
+			delay(2000);
+		}
 
 	return 0;
 }
