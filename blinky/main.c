@@ -1,38 +1,25 @@
-#include <stm32f4xx.h>
+#include <stm32f401xe.h>
 
- 
 #define LED_PIN 5
 
-#define LED_ON() GPIOA->BSRR |= (1 << 5)
-#define LED_OFF() GPIOA->BSRR |= (1 << 21)
- 
+void delay(unsigned int);
 
-void delay(uint32_t);
-
-
-int main()
+int main(void)
 {
-													 /* Enbale GPIOA clock */
-	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+    RCC->AHB1ENR  |= RCC_AHB1ENR_GPIOAEN;
+    GPIOA->MODER |= ( 0x01<<(LED_PIN << 1) );
 
-	GPIOA->MODER |= (1 << (LED_PIN << 1));			/* Configure GPIOA pin 5 as output */		
-	
-	GPIOA->OSPEEDR |= (3 << (LED_PIN << 1));		/* Configure GPIOA pin 5 in max speed */
- 
-													/* Turn on the LED */
-	
-	while(1)
-		{
-			LED_ON();
-			delay(2000);
-			LED_OFF();
-			delay(2000);
-		}
-
-	return 0;
+    while(1) 
+    {        
+        GPIOA->BSRR = (1 << LED_PIN);
+        delay(10); 
+        GPIOA->BSRR = (1 << (LED_PIN + 16) );
+        delay(10);
+    }
 }
-
-void delay(uint32_t t)
+	
+void delay(unsigned time)
 {
-	while(t!=0) t--;
+	while(time !=0)
+		time --;
 }
