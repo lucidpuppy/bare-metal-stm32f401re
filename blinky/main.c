@@ -20,6 +20,5 @@ int main(void)
 	
 void delay(unsigned time)
 {
-	while(time !=0)
-		time --;
+	while(time !=0) time --;
 }
