@@ -1,7 +1,7 @@
 bare-metal with gcc-arm on stm32f401re
 
 - blinky, on linux with GNU ARM toolchain
-- blinky_keil on iwndows with keil uVision
+- blinky_keil on windows with keil uVision
 
 
 issue: bliky using GNU ARM toolchain compiles and link okay using scripts
